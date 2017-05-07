@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import CodeForm from './Components/CodeForm.js';
-import CodeList from './Components/CodeList.js';
 import InvalidCode from './Components/InvalidCode.js';
 import SelectedCode from './Components/SelectedCode.js';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup' // ES6
+import UI from './Components/UI.js';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import './App.css';
 import Codes from './Codes.json';
+
 
 class App extends Component {
 
@@ -57,18 +58,22 @@ class App extends Component {
         }
 
         return (
-            <div className="App">
-                <CodeList codes={Codes}/>
-                <hr/>
-                <CSSTransitionGroup
-                    transitionName="Step"
-                    transitionAppear={true}
-                    transitionAppearTimeout={2000}
-                    transitionEnterTimeout={2000}
-                    transitionLeaveTimeout={2000}>
-                    {step}
-                </CSSTransitionGroup>
+        <div className="Wrap">
+            <div className="Square">
+                <UI/>
+                <div className="App">
+                    <CSSTransitionGroup
+                        transitionName="Step"
+                        transitionAppear={true}
+                        transitionAppearTimeout={2000}
+                        transitionEnterTimeout={2000}
+                        transitionLeaveTimeout={2000}>
+                        {step}
+                    </CSSTransitionGroup>
+                </div>
             </div>
+        </div>
+
         );
     }
 }

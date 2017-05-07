@@ -6,6 +6,7 @@
     "mousetrap": "^1.6.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-inlinesvg": "github:matthewwithanm/react-inlinesvg",
     "react-mousetrap": "^0.1.1",
     "react-transition-group": "^1.1.1"
   },

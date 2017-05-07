@@ -25,13 +25,10 @@ class CodeForm extends Component {
         const value = this.state.value;
 
         return (
-            <div className="CodeForm, Step">
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        <div>Enter a Code</div>
-                        <input type="text" value={value} onChange={this.handleChange} />
-                    </label>
-                    <input type="submit" value="Submit" />
+            <div className="CodeForm Step">
+                <form className="CodeForm_Wrap" onSubmit={this.handleSubmit}>
+                        <input className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
+                    {/*<input type="submit" value="Submit" />*/}
                 </form>
             </div>
         );
