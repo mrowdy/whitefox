@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+.App {
+
+}
+
+.CodeForm {
+
+}
+
+.Step {
+    opacity: 1;
+    transform: translate(0px 0px);
+}
+
+.Step-appear {
+    opacity: 0;
+    transform: translate(100px 100px);
+}
+
+.Step-appear.Step-appear-active {
+    opacity: 1;
+    transform: translate(100px 100px);
+    transition: opacity 2000ms ease-in;
+}
