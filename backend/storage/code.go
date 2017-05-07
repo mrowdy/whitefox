@@ -3,8 +3,6 @@ package storage
 import (
 	"errors"
 	"fmt"
-	"net/http"
-	"github.com/manyminds/api2go"
 	"github.com/slemgrim/whitefox/backend/model"
 )
 
@@ -26,8 +24,8 @@ func (s CodeStorage) GetOne(id string) (model.Code, error) {
 	if ok {
 		return *code, nil
 	}
-	errMessage := fmt.Sprintf("Code for id %s not found", id)
-	return model.Code{}, api2go.NewHTTPError(errors.New(errMessage), errMessage, http.StatusNotFound)
+
+	return model.Code{}, errors.New(fmt.Sprintf("Code for id %s not found", id))
 }
 
 func (s *CodeStorage) Insert(c model.Code) string {
