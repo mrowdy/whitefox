@@ -8,6 +8,7 @@ import (
 type Config struct {
 	Http HttpConfig
 	Api  ApiConfig
+	Storage StorageConfig
 }
 
 type HttpConfig struct {
@@ -16,6 +17,11 @@ type HttpConfig struct {
 
 type ApiConfig struct {
 	Version string
+}
+
+type StorageConfig struct {
+	Driver string
+	Config string
 }
 
 func ReadConfig(file string) (config *Config, err error) {

@@ -4,5 +4,9 @@
   },
   "api": {
     "version": "v0.1"
+  },
+  "storage": {
+    "driver": "sqlite3",
+    "config": "whitefox.sqlite"
   }
 }

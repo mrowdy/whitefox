@@ -1,8 +1,8 @@
 package model
 
 type Code struct {
-	Code   string `json:"-"`
-	Label  string       `json:"label"`
+	Code   string     `json:"-" gorm:"primary_key"`
+	Label  string     `json:"label"`
 	IsUsed bool       `json:"is-used"`
 }
 

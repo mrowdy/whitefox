@@ -13,14 +13,8 @@ type CodeResource struct {
 }
 
 func (s CodeResource) FindAll(r api2go.Request) (api2go.Responder, error) {
-	var result []model.Code
 	codes := s.CodeStorage.GetAll()
-
-	for _, code := range codes {
-		result = append(result, *code)
-	}
-
-	return &Response{Res: result}, nil
+	return &Response{Res: codes}, nil
 }
 
 func (s CodeResource) FindOne(ID string, r api2go.Request) (api2go.Responder, error) {
