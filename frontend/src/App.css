@@ -14,7 +14,9 @@ body {
   margin: auto;
   height: 100vmin;
   width: 100vmin;
-  position: relative; }
+  position: relative;
+  overflow: hidden;
+  padding: 50px; }
 
 .UI {
   position: relative;
@@ -125,7 +127,7 @@ body {
     opacity: .8;
     transform: scale(1); } }
 
-.CodeForm {
+.Step {
   position: absolute;
   top: 0;
   left: 0;
@@ -146,8 +148,13 @@ body {
   outline-style: none; }
 
 ::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
   color: var(--color-primary); }
+
+.Access--denied {
+  color: var(--color-error); }
+
+.Access--granted {
+  color: var(--color-highlight); }
 
 /*Colors*/
 :root {
@@ -161,4 +168,5 @@ body {
 * {
   box-sizing: border-box;
   font-family: 'VT323', monospace;
-  font-size: var(--font-size-default); }
+  font-size: var(--font-size-default);
+  line-height: 10vmin; }

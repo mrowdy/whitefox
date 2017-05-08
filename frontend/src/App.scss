@@ -1,7 +1,10 @@
 @import "../res/scss/Layout.scss";
 @import "../res/scss/Square.scss";
 @import "../res/scss/UI.scss";
-@import "../res/scss/CodeForm";
+@import "../res/scss/Step.scss";
+@import "../res/scss/CodeForm.scss";
+@import "../res/scss/Access.scss";
+
 
 /*Colors*/
 :root {
@@ -17,4 +20,5 @@
     box-sizing: border-box;
     font-family: 'VT323', monospace;
     font-size: var(--font-size-default);
+    line-height: 10vmin;
 }

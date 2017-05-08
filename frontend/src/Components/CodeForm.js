@@ -6,8 +6,7 @@ class CodeForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            invalid: false,
+            value: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,7 +29,7 @@ class CodeForm extends Component {
         const value = this.state.value;
 
         return (
-            <div className="CodeForm Step">
+            <div className="Step CodeForm">
                 <form className="CodeForm_Wrap" onSubmit={this.handleSubmit}>
                     <input maxLength={maxLength} className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
                 </form>

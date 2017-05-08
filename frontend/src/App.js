@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import CodeForm from './Components/CodeForm.js';
-import SelectedCode from './Components/SelectedCode.js';
+import AccessGranted from './Components/AccessGranted.js';
+import AccessDenied from './Components/AccessDenied.js';
+
 import UI from './Components/UI.js';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
@@ -13,11 +15,11 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedCode: null,
+            selectedCode: '',
             codeState: 'neutral'
         };
 
-        this.errorTimeout = null;
+        this.stateTimout = null;
 
         this.handleCodeChange = this.handleCodeChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
@@ -31,37 +33,35 @@ class App extends Component {
             }
         }
 
-        console.log(code);
-        console.log(selectedCode);
-
         if(selectedCode){
             this.setState({selectedCode: selectedCode});
             this.setState({codeState: 'valid'});
+            this.stateTimout = setTimeout(this.handleReset, 2000);
         } else {
             this.setState({codeState: 'invalid'});
-            this.errorTimeout = setTimeout(this.handleReset, 2000)
+            this.stateTimout = setTimeout(this.handleReset, 2000);
+            this.setState({selectedCode: null});
         }
     }
 
     handleReset() {
-        this.setState({selectedCode: null});
         this.setState({codeState: 'neutral'});
 
-        if(this.errorTimeout != null){
-            clearTimeout(this.errorTimeout);
+        if(this.stateTimout != null){
+            clearTimeout(this.stateTimout);
         }
     }
 
     render() {
-
         const codeState = this.state.codeState;
-        const selectedCode = this.state.selectedCode;
 
         let step = null;
-        if(selectedCode){
-            step = <SelectedCode code={selectedCode} onReset={this.handleReset}/>
-        } else {
+        if(codeState === 'neutral'){
             step = <CodeForm onChange={this.handleCodeChange}/>
+        } else if(codeState === 'valid') {
+            step = <AccessGranted/>
+        } else if(codeState === 'invalid'){
+            step = <AccessDenied/>
         }
 
         return (
