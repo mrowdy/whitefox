@@ -17,13 +17,12 @@ class CodeForm extends Component {
     handleChange(event) {
         this.setState({value: event.target.value});
         if(event.target.value.length >= maxLength){
-            this.handleSubmit(event)
+            this.handleSubmit(event.target.value)
         }
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        this.props.onChange(this.state.value);
+    handleSubmit(value) {
+        this.props.onChange(value);
         this.setState({value: ''});
     }
 
@@ -33,8 +32,7 @@ class CodeForm extends Component {
         return (
             <div className="CodeForm Step">
                 <form className="CodeForm_Wrap" onSubmit={this.handleSubmit}>
-                        <input maxLength={maxLength} className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
-                    {/*<input type="submit" value="Submit" />*/}
+                    <input maxLength={maxLength} className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
                 </form>
             </div>
         );

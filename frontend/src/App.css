@@ -21,8 +21,23 @@ body {
   width: 100%;
   height: 100%; }
 
+.UI * {
+  transition: stroke 1s; }
+
+.UI--invalid * {
+  stroke: var(--color-error); }
+
+.UI--invalid .UIDotTop *, .UI--invalid UIDotBottom * {
+  fill: var(--color-error); }
+
+.UI--valid * {
+  stroke: var(--color-highlight); }
+
+.UI--valid .UIDotTop *, .UI--valid UIDotBottom * {
+  fill: var(--color-highlight); }
+
 .UIFull {
-  filter: blur(20px);
+  filter: blur(3px);
   animation-name: UIFull;
   animation-duration: 1s;
   animation-iteration-count: infinite;
@@ -139,7 +154,9 @@ body {
   --color-background: #000000;
   --color-primary: #05F2F2;
   --color-primary-light: #05C7F2;
-  --font-size-default: 10vmin; }
+  --font-size-default: 10vmin;
+  --color-error: red;
+  --color-highlight: green; }
 
 * {
   box-sizing: border-box;

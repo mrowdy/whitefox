@@ -4,12 +4,14 @@ import Isvg from 'react-inlinesvg';
 class UI extends Component {
 
     render() {
+        let codeState = 'UI--neutral';
+        if(this.props.codeState === 'valid'){
+            codeState = 'UI--valid';
+        } else if(this.props.codeState === 'invalid'){
+            codeState = 'UI--invalid';
+        }
 
-        let classNames = [
-            'UI',
-            this.props.isValid ? 'UI-valid' : 'UI-invalid'
-        ];
-
+        let classNames = `UI ${codeState}`;
         return (
             <div className={classNames}>
                 <Isvg className="UISvg UIFull" src="./assets/UI-Full.svg"></Isvg>

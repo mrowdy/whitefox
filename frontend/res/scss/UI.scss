@@ -3,10 +3,34 @@
   position: relative;
   width: 100%;
   height: 100%;
+
+  * {
+    transition: stroke 1s;
+  }
+}
+
+.UI--invalid {
+  * {
+    stroke: var(--color-error);
+  }
+
+  .UIDotTop * , UIDotBottom *{
+    fill: var(--color-error);
+  }
+}
+
+.UI--valid {
+  * {
+    stroke: var(--color-highlight);
+  }
+
+  .UIDotTop * , UIDotBottom *{
+    fill: var(--color-highlight);
+  }
 }
 
 .UIFull {
-  filter: blur(20px);
+  filter: blur(3px);
   animation-name: UIFull;
   animation-duration: 1s;
   animation-iteration-count: infinite;

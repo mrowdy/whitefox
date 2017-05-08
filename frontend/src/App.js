@@ -14,7 +14,7 @@ class App extends Component {
         super(props);
         this.state = {
             selectedCode: null,
-            invalidCode: false
+            codeState: 'neutral'
         };
 
         this.errorTimeout = null;
@@ -31,17 +31,21 @@ class App extends Component {
             }
         }
 
+        console.log(code);
+        console.log(selectedCode);
+
         if(selectedCode){
             this.setState({selectedCode: selectedCode});
+            this.setState({codeState: 'valid'});
         } else {
-            this.setState({invalidCode: true});
+            this.setState({codeState: 'invalid'});
             this.errorTimeout = setTimeout(this.handleReset, 2000)
         }
     }
 
     handleReset() {
         this.setState({selectedCode: null});
-        this.setState({invalidCode: false});
+        this.setState({codeState: 'neutral'});
 
         if(this.errorTimeout != null){
             clearTimeout(this.errorTimeout);
@@ -50,7 +54,7 @@ class App extends Component {
 
     render() {
 
-        const invalidCode = this.state.invalidCode;
+        const codeState = this.state.codeState;
         const selectedCode = this.state.selectedCode;
 
         let step = null;
@@ -63,7 +67,7 @@ class App extends Component {
         return (
             <div className="Wrap">
                 <div className="Square">
-                    <UI isValid={!invalidCode} />
+                    <UI codeState={codeState} />
                     <CSSTransitionGroup
                         transitionName="Step"
                         transitionAppear={true}
