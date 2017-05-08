@@ -1,0 +1,122 @@
+
+.UI {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.UIFull {
+  filter: blur(20px);
+  animation-name: UIFull;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+.UISvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.UIOutline--blur {
+  filter: blur(10px);
+}
+
+.UIOutline--blur * {
+  stroke: var(--color-primary-light);
+}
+
+
+.UIRuler {
+  animation-name: UIRuler;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+.UIInnerRing * {
+  stroke-opacity: .1;
+}
+
+.UIOutline {
+  transform: rotate(-30deg);
+}
+
+.UIInnerRing {
+  animation-name: UIRuler;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+}
+
+.UIDotTop {
+  animation-name: UIDots;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+}
+
+.UIDotBottom {
+  animation-name: UIDots;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+.UICenter * {
+  stroke-opacity: .1;
+  fill-opacity: .1;
+}
+
+@keyframes UIRuler {
+  0% {
+    transform: rotate(45deg);
+  }
+  30% {
+    transform: rotate(120deg);
+  }
+  60% {
+    transform: rotate(270deg);
+  }
+}
+
+
+@keyframes UIDots {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(90deg);
+  }
+  60% {
+    transform: rotate(90deg);
+  }
+  85% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes UIFull {
+  0% {
+    opacity: .5;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: .8;
+    transform: scale(1);
+  }
+}

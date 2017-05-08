@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 
+const maxLength = 6;
+
 class CodeForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             value: '',
+            invalid: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -13,6 +16,9 @@ class CodeForm extends Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
+        if(event.target.value.length >= maxLength){
+            this.handleSubmit(event)
+        }
     }
 
     handleSubmit(event) {
@@ -27,7 +33,7 @@ class CodeForm extends Component {
         return (
             <div className="CodeForm Step">
                 <form className="CodeForm_Wrap" onSubmit={this.handleSubmit}>
-                        <input className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
+                        <input maxLength={maxLength} className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
                     {/*<input type="submit" value="Submit" />*/}
                 </form>
             </div>

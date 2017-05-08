@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import CodeForm from './Components/CodeForm.js';
-import InvalidCode from './Components/InvalidCode.js';
 import SelectedCode from './Components/SelectedCode.js';
 import UI from './Components/UI.js';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
@@ -15,9 +14,10 @@ class App extends Component {
         super(props);
         this.state = {
             selectedCode: null,
-            invalidCode: false,
-            items: ['hello', 'world', 'click', 'me']
+            invalidCode: false
         };
+
+        this.errorTimeout = null;
 
         this.handleCodeChange = this.handleCodeChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
@@ -35,12 +35,17 @@ class App extends Component {
             this.setState({selectedCode: selectedCode});
         } else {
             this.setState({invalidCode: true});
+            this.errorTimeout = setTimeout(this.handleReset, 2000)
         }
     }
 
     handleReset() {
         this.setState({selectedCode: null});
         this.setState({invalidCode: false});
+
+        if(this.errorTimeout != null){
+            clearTimeout(this.errorTimeout);
+        }
     }
 
     render() {
@@ -49,19 +54,16 @@ class App extends Component {
         const selectedCode = this.state.selectedCode;
 
         let step = null;
-        if(invalidCode){
-            step = <InvalidCode onReset={this.handleReset}/>;
-        } else if(selectedCode){
+        if(selectedCode){
             step = <SelectedCode code={selectedCode} onReset={this.handleReset}/>
         } else {
             step = <CodeForm onChange={this.handleCodeChange}/>
         }
 
         return (
-        <div className="Wrap">
-            <div className="Square">
-                <UI/>
-                <div className="App">
+            <div className="Wrap">
+                <div className="Square">
+                    <UI isValid={!invalidCode} />
                     <CSSTransitionGroup
                         transitionName="Step"
                         transitionAppear={true}
@@ -72,8 +74,6 @@ class App extends Component {
                     </CSSTransitionGroup>
                 </div>
             </div>
-        </div>
-
         );
     }
 }

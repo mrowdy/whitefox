@@ -2,9 +2,16 @@ import React, {Component} from 'react';
 import Isvg from 'react-inlinesvg';
 
 class UI extends Component {
+
     render() {
+
+        let classNames = [
+            'UI',
+            this.props.isValid ? 'UI-valid' : 'UI-invalid'
+        ];
+
         return (
-            <div className="UI">
+            <div className={classNames}>
                 <Isvg className="UISvg UIFull" src="./assets/UI-Full.svg"></Isvg>
                 <Isvg className="UISvg UIOutline"src="./assets/UI-Outline.svg"></Isvg>
                 <Isvg className="UISvg UIOutline UIOutline--blur" src="./assets/UI-Outline.svg"></Isvg>

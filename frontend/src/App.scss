@@ -1,0 +1,18 @@
+@import "../res/scss/Layout.scss";
+@import "../res/scss/Square.scss";
+@import "../res/scss/UI.scss";
+@import "../res/scss/CodeForm";
+
+/*Colors*/
+:root {
+    --color-background: #000000;
+    --color-primary: #05F2F2;
+    --color-primary-light: #05C7F2;
+    --font-size-default: 10vmin;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'VT323', monospace;
+    font-size: var(--font-size-default);
+}

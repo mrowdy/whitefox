@@ -1,282 +1,147 @@
-/*Colors*/
-:root {
-    --color-background: #000000;
-    --color-primary: #05F2F2;
-    --color-primary-light: #05C7F2;
-    --font-size-default: 10vmin;
-}
-
-* {
-    box-sizing: border-box;
-    font-family: 'VT323', monospace;
-    font-size: var(--font-size-default);
-}
-
 body {
-    background-color: var(--color-background);
-    color: var(--color-primary);
-    margin: 0;
-    padding: 0;
-}
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  margin: 0;
+  padding: 0; }
 
 .Wrap {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
 
 .Square {
-    margin: auto;
-    height: 100vmin;
-    width: 100vmin;
-    position: relative;
-
-    animation-name: UIDisplacement;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-}
+  margin: auto;
+  height: 100vmin;
+  width: 100vmin;
+  position: relative; }
 
 .UI {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
+  position: relative;
+  width: 100%;
+  height: 100%; }
 
 .UIFull {
-    filter: blur(20px);
-    animation-name: UIFull;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-}
+  filter: blur(20px);
+  animation-name: UIFull;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate; }
 
 .UISvg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-}
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; }
 
 .UIOutline--blur {
-    filter: blur(10px);
-}
+  filter: blur(10px); }
 
 .UIOutline--blur * {
-    stroke: var(--color-primary-light);
-}
-
+  stroke: var(--color-primary-light); }
 
 .UIRuler {
-    animation-name: UIRuler;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate;
-}
+  animation-name: UIRuler;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate; }
 
 .UIInnerRing * {
-    stroke-opacity: .1;
-}
+  stroke-opacity: .1; }
 
 .UIOutline {
-    transform: rotate(-30deg);
-}
+  transform: rotate(-30deg); }
 
 .UIInnerRing {
-    animation-name: UIRuler;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate-reverse;
-}
+  animation-name: UIRuler;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse; }
 
 .UIDotTop {
-    animation-name: UIDots;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate-reverse;
-}
+  animation-name: UIDots;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse; }
 
 .UIDotBottom {
-    animation-name: UIDots;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate;
-}
+  animation-name: UIDots;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate; }
 
 .UICenter * {
-    stroke-opacity: .1;
-    fill-opacity: .1;
-}
+  stroke-opacity: .1;
+  fill-opacity: .1; }
 
 @keyframes UIRuler {
-    0% {
-        transform: rotate(45deg);
-    }
-    30% {
-        transform: rotate(120deg);
-    }
-    60% {
-        transform: rotate(270deg);
-    }
-}
-
-@keyframes UIDisplacement {
-    0% {
-        transform: translate(0);
-        opacity: 1;
-
-    }
-    51% {
-        transform: translate(0);
-        opacity: 1;
-
-    }
-
-    52% {
-        transform: translate(10px, 10px);
-        opacity: 1;
-
-    }
-
-    53% {
-        transform: translate(0);
-        opacity: 1;
-
-    }
-
-    81% {
-        transform: translate(0);
-        opacity: 1;
-    }
-
-    82% {
-        transform: translate(-30px, 10px);
-        opacity: 0.1;
-    }
-
-    89% {
-        transform: translate(-30px, 10px);
-        opacity: 0.1;
-    }
-
-    90% {
-        transform: translate(0);
-        opacity: 1;
-
-    }
-
-
-    100% {
-        transform: translate(0);
-        opacity: 1;
-    }
-}
-
-@keyframes CodeFormOpacity {
-    0% {
-        opacity: 1;
-    }
-    30% {
-        opacity: 100;
-    }
-    35% {
-        opacity: 0;
-    }
-    40% {
-        opacity: 100;
-    }
-
-    100% {
-        opacity: 100;
-    }
-}
-
+  0% {
+    transform: rotate(45deg); }
+  30% {
+    transform: rotate(120deg); }
+  60% {
+    transform: rotate(270deg); } }
 
 @keyframes UIDots {
-    0% {
-        transform: rotate(0deg);
-    }
-    15% {
-        transform: rotate(0deg);
-    }
-    40% {
-        transform: rotate(90deg);
-    }
-    60% {
-        transform: rotate(90deg);
-    }
-    85% {
-        transform: rotate(180deg);
-    }
-    100% {
-        transform: rotate(180deg);
-    }
-}
+  0% {
+    transform: rotate(0deg); }
+  15% {
+    transform: rotate(0deg); }
+  40% {
+    transform: rotate(90deg); }
+  60% {
+    transform: rotate(90deg); }
+  85% {
+    transform: rotate(180deg); }
+  100% {
+    transform: rotate(180deg); } }
 
 @keyframes UIFull {
-    0% {
-        opacity: .5;
-        transform: scale(1.1);
-    }
-    100% {
-        opacity: .8;
-        transform: scale(1);
-    }
-}
-
-.App {
-    width: 100vmin;
-    height: 100vmin;
-}
+  0% {
+    opacity: .5;
+    transform: scale(1.1); }
+  100% {
+    opacity: .8;
+    transform: scale(1); } }
 
 .CodeForm {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vmin;
-    height: 100vmin;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vmin;
+  height: 100vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 .CodeForm_Input {
-    background-color:  rgba(0,0,0,0.5);
-    border: none;
-    color: var(--color-primary-light);
-    padding: 2vmin;
-    text-align: center;
-    text-transform: uppercase;
-    outline-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: var(--color-primary-light);
+  padding: 2vmin;
+  text-align: center;
+  text-transform: uppercase;
+  outline-style: none; }
 
-    animation-name: CodeFormOpacity;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-}
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: var(--color-primary); }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: var(--color-primary);
-}
+/*Colors*/
+:root {
+  --color-background: #000000;
+  --color-primary: #05F2F2;
+  --color-primary-light: #05C7F2;
+  --font-size-default: 10vmin; }
 
-.Step {
-    opacity: 1;
-    transform: translate(0px 0px);
-}
-
-.Step-appear {
-    opacity: 0;
-    transform: translate(100px 100px);
-}
-
-.Step-appear.Step-appear-active {
-    opacity: 1;
-    transform: translate(100px 100px);
-    transition: opacity 2000ms ease-in;
-}
+* {
+  box-sizing: border-box;
+  font-family: 'VT323', monospace;
+  font-size: var(--font-size-default); }
