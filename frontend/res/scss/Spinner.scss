@@ -1,0 +1,74 @@
+.Spinner {
+  width: 25vmin;
+  margin: auto;
+  filter: blur(3px);
+  position: relative;
+  transform: translateY(-10vmin);
+}
+
+.Spinner_Row:nth-child(2) {
+  animation-delay: -5s;
+}
+
+.Spinner_Row:nth-child(2n+1) {
+  animation-delay: -6s;
+}
+
+.Spinner_Row:nth-child(3n) {
+  animation-delay: -7s;
+}
+
+.Spinner_Row:nth-child(5n) {
+  animation-delay: -8s;
+}
+
+.Spinner_Row:nth-child(7n) {
+  animation-delay: -9s;
+}
+
+.Spinner_Row {
+  transform: translateY(-5vmin);
+  position: absolute;
+  width: 100%;
+  animation-name: SpinnerRow;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+.Spinner_Disk {
+  stroke: var(--color-primary);
+  fill: rgba(0,0,0,0);
+}
+
+.Spinner--thin {
+  animation-duration: 1s;
+}
+
+.Spinner--mid {
+  animation-duration: 2s;
+}
+
+
+.Spinner--thin * {
+  stroke-width: .5vmin;
+}
+
+.Spinner--mid * {
+  stroke-width: 1vmin;
+}
+
+.Spinner--thick * {
+  stroke-width: 2vmin;
+}
+
+
+@keyframes SpinnerRow {
+  0% {
+    transform: translateY(-10vmin);
+  }
+  100% {
+    transform: translateY(10vmin);
+  }
+}
