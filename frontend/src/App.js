@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CodeForm from './Components/CodeForm.js';
 import AccessGranted from './Components/AccessGranted.js';
 import AccessDenied from './Components/AccessDenied.js';
+import Loading from './Components/Loading.js';
 
 import UI from './Components/UI.js';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
@@ -23,6 +24,8 @@ class App extends Component {
 
         this.handleCodeChange = this.handleCodeChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.startLoading = this.startLoading.bind(this);
+
     }
 
     handleCodeChange(code) {
@@ -36,7 +39,7 @@ class App extends Component {
         if(selectedCode){
             this.setState({selectedCode: selectedCode});
             this.setState({codeState: 'valid'});
-            this.stateTimout = setTimeout(this.handleReset, 2000);
+            this.stateTimout = setTimeout(this.startLoading, 2000);
         } else {
             this.setState({codeState: 'invalid'});
             this.stateTimout = setTimeout(this.handleReset, 2000);
@@ -46,6 +49,15 @@ class App extends Component {
 
     handleReset() {
         this.setState({codeState: 'neutral'});
+
+        if(this.stateTimout != null){
+            clearTimeout(this.stateTimout);
+        }
+    }
+
+
+    startLoading() {
+        this.setState({codeState: 'loading'});
 
         if(this.stateTimout != null){
             clearTimeout(this.stateTimout);
@@ -62,6 +74,8 @@ class App extends Component {
             step = <AccessGranted/>
         } else if(codeState === 'invalid'){
             step = <AccessDenied/>
+        } else if(codeState == 'loading'){
+            step = <Loading/>
         }
 
         return (

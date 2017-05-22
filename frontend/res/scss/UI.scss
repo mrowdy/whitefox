@@ -100,6 +100,12 @@
   fill-opacity: .1;
 }
 
+.UI--loading {
+  .UICenter, UIInnerRing , .UIFull{
+    display: none;
+  }
+}
+
 @keyframes UIRuler {
   0% {
     transform: rotate(45deg);

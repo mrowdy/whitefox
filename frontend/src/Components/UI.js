@@ -9,6 +9,8 @@ class UI extends Component {
             codeState = 'UI--valid';
         } else if(this.props.codeState === 'invalid'){
             codeState = 'UI--invalid';
+        } else if(this.props.codeState === 'loading'){
+            codeState = 'UI--loading';
         }
 
         let classNames = `UI ${codeState}`;
