@@ -2,11 +2,13 @@
   {
     "code": "123456",
     "item": "screw driver",
-    "location": "at home"
+    "lat": "1234",
+    "lon": "4321"
   },
   {
     "code": "654321",
     "item": "knife",
-    "location": "in the woods"
+    "lat": "1234",
+    "lon": "4321"
   }
 ]

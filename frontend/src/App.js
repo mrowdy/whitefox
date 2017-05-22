@@ -3,6 +3,7 @@ import CodeForm from './Components/CodeForm.js';
 import AccessGranted from './Components/AccessGranted.js';
 import AccessDenied from './Components/AccessDenied.js';
 import Loading from './Components/Loading.js';
+import Targeting from './Components/Targeting.js';
 
 import UI from './Components/UI.js';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
@@ -25,7 +26,7 @@ class App extends Component {
         this.handleCodeChange = this.handleCodeChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.startLoading = this.startLoading.bind(this);
-
+        this.startTargeting = this.startTargeting.bind(this);
     }
 
     handleCodeChange(code) {
@@ -55,9 +56,18 @@ class App extends Component {
         }
     }
 
-
     startLoading() {
         this.setState({codeState: 'loading'});
+
+        if(this.stateTimout != null){
+            clearTimeout(this.stateTimout);
+        }
+
+        this.stateTimout = setTimeout(this.startTargeting, 2000);
+    }
+
+    startTargeting(){
+        this.setState({codeState: 'targeting'});
 
         if(this.stateTimout != null){
             clearTimeout(this.stateTimout);
@@ -66,7 +76,8 @@ class App extends Component {
 
     render() {
         const codeState = this.state.codeState;
-
+        const code = this.state.selectedCode;
+        console.log(code);
         let step = null;
         if(codeState === 'neutral'){
             step = <CodeForm onChange={this.handleCodeChange}/>
@@ -74,8 +85,10 @@ class App extends Component {
             step = <AccessGranted/>
         } else if(codeState === 'invalid'){
             step = <AccessDenied/>
-        } else if(codeState == 'loading'){
+        } else if(codeState === 'loading'){
             step = <Loading/>
+        } else if(codeState === 'targeting'){
+            step = <Targeting code={code}/>
         }
 
         return (
