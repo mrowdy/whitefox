@@ -22,9 +22,8 @@ body {
   position: relative;
   width: 100%;
   height: 100%; }
-
-.UI * {
-  transition: stroke 1s; }
+  .UI * {
+    transition: stroke 1s; }
 
 .UI--invalid * {
   stroke: var(--color-error); }

@@ -18,7 +18,9 @@ class App extends Component {
         super(props);
         this.state = {
             selectedCode: '',
-            codeState: 'neutral'
+            codeState: 'neutral',
+            location: null,
+            orientation: null
         };
 
         this.stateTimout = null;
@@ -27,6 +29,10 @@ class App extends Component {
         this.handleReset = this.handleReset.bind(this);
         this.startLoading = this.startLoading.bind(this);
         this.startTargeting = this.startTargeting.bind(this);
+        this.getLocation = this.getLocation.bind(this);
+        this.setLocation = this.setLocation.bind(this);
+        this.getOrientation = this.getOrientation.bind(this);
+        this.setOrientation = this.setOrientation.bind(this);
     }
 
     handleCodeChange(code) {
@@ -63,38 +69,73 @@ class App extends Component {
             clearTimeout(this.stateTimout);
         }
 
-        this.stateTimout = setTimeout(this.startTargeting, 2000);
+        this.getLocation()
+        this.getOrientation()
     }
 
     startTargeting(){
+        if(!(this.state.codeState === 'loading' || this.state.codeState === 'targeting')){
+            console.log('inalid state');
+            return;
+        }
+        if(this.state.location == null){
+            console.log('missing location');
+            return;
+        }
         this.setState({codeState: 'targeting'});
+    }
 
-        if(this.stateTimout != null){
-            clearTimeout(this.stateTimout);
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setLocation);
+        } else {
+            console.log("geolocation not supported")
         }
     }
 
+    getOrientation(){
+        window.addEventListener('deviceorientation', this.setOrientation, false);
+    }
+
+    setOrientation(orientation){
+        this.setState({orientation: orientation.alpha}, this.startTargeting);
+    }
+
+    setLocation(location) {
+        this.setState({location: location}, this.startTargeting);
+    }
+
     render() {
-        const codeState = this.state.codeState;
-        const code = this.state.selectedCode;
-        console.log(code);
+
         let step = null;
-        if(codeState === 'neutral'){
-            step = <CodeForm onChange={this.handleCodeChange}/>
-        } else if(codeState === 'valid') {
-            step = <AccessGranted/>
-        } else if(codeState === 'invalid'){
-            step = <AccessDenied/>
-        } else if(codeState === 'loading'){
-            step = <Loading/>
-        } else if(codeState === 'targeting'){
-            step = <Targeting code={code}/>
+
+        switch(this.state.codeState){
+
+            case 'valid':
+                step = <AccessGranted/>
+                break;
+            case 'invalid':
+                step = <AccessDenied/>
+                break;
+            case 'loading':
+                step = <Loading/>
+                break;
+            case 'targeting':
+                step = <Targeting
+                    code={this.state.selectedCode}
+                    location={this.state.location}
+                    orientation={this.state.orientation}/>
+                break;
+            case 'neutral':
+            default:
+                step = <CodeForm onChange={this.handleCodeChange}/>
+                break;
         }
 
         return (
             <div className="Wrap">
                 <div className="Square">
-                    <UI codeState={codeState} />
+                    <UI codeState={this.state.codeState} />
                     <CSSTransitionGroup
                         transitionName="Step"
                         transitionAppear={true}
