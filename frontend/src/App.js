@@ -20,7 +20,11 @@ class App extends Component {
             selectedCode: '',
             codeState: 'neutral',
             location: null,
-            orientation: null
+            orientation: {
+                alpha: 0,
+                beta: 0,
+                gamma: 0
+            }
         };
 
         this.stateTimout = null;
@@ -34,6 +38,11 @@ class App extends Component {
         this.getOrientation = this.getOrientation.bind(this);
         this.setOrientation = this.setOrientation.bind(this);
     }
+
+    componentDidMount(){
+        this.getLocation();
+    }
+
 
     handleCodeChange(code) {
         let selectedCode = null;
@@ -75,7 +84,7 @@ class App extends Component {
 
     startTargeting(){
         if(!(this.state.codeState === 'loading' || this.state.codeState === 'targeting')){
-            console.log('inalid state');
+            console.log('invalid state for targeting');
             return;
         }
         if(this.state.location == null){
@@ -86,6 +95,7 @@ class App extends Component {
     }
 
     getLocation() {
+        console.log('get location');
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.setLocation);
         } else {
@@ -94,14 +104,19 @@ class App extends Component {
     }
 
     getOrientation(){
-        window.addEventListener('deviceorientation', this.setOrientation, false);
+        console.log('get orientation');
+        window.addEventListener('deviceorientationabsolute', this.setOrientation, false);
     }
 
     setOrientation(orientation){
-        this.setState({orientation: orientation.alpha}, this.startTargeting);
+        console.log('set orientation');
+        console.log(orientation);
+        this.setState({orientation: orientation}, this.startTargeting);
     }
 
     setLocation(location) {
+        console.log('set location');
+        console.log(location)
         this.setState({location: location}, this.startTargeting);
     }
 

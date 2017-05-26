@@ -215,6 +215,35 @@ body {
   100% {
     transform: translateY(10vmin); } }
 
+.Compass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vmin;
+  height: 100vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.Compass_Needle {
+  opacity: .5;
+  display: block;
+  left: 25%;
+  top: 25%;
+  position: absolute;
+  width: 50vmin;
+  height: 50vmin; }
+
+.Compass_Ring {
+  opacity: .5;
+  display: block;
+  left: 25%;
+  top: 25%;
+  position: absolute;
+  width: 50vmin;
+  height: 50vmin; }
+
 /*Colors*/
 :root {
   --color-background: #000000;

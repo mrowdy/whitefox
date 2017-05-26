@@ -31,7 +31,7 @@ class CodeForm extends Component {
         return (
             <div className="Step CodeForm">
                 <form className="CodeForm_Wrap" onSubmit={this.handleSubmit}>
-                    <input maxLength={maxLength} className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
+                    <input type="number" maxLength={maxLength} className="CodeForm_Input" placeholder="ENTER CODE" type="text" value={value} onChange={this.handleChange} />
                 </form>
             </div>
         );
