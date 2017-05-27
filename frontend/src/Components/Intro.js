@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
+import Isvg from 'react-inlinesvg';
 
 class Intro extends Component {
     render() {
         return (
-            <div className="Step Intro">
-               Intro
-            </div>
+            <Isvg className="Step Intro" src="./assets/Logo.svg"></Isvg>
         );
     }
 }

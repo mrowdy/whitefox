@@ -12,7 +12,6 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import './App.css';
 import Codes from './Codes.json';
 
-
 class App extends Component {
 
     constructor(props) {
@@ -29,6 +28,7 @@ class App extends Component {
         };
 
         this.stateTimout = null;
+        this.locationInterval = null;
 
         this.handleCodeChange = this.handleCodeChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
@@ -73,9 +73,9 @@ class App extends Component {
     startApp(){
         this.setState({codeState: 'neutral'});
 
-        // if(this.stateTimout != null){
-        //     clearTimeout(this.stateTimout);
-        // }
+        if(this.stateTimout != null){
+            clearTimeout(this.stateTimout);
+        }
     }
 
     handleReset() {
@@ -93,24 +93,25 @@ class App extends Component {
             clearTimeout(this.stateTimout);
         }
 
-        this.getLocation()
+        this.locationInterval = setInterval(this.getLocation, 1000);
         this.getOrientation()
     }
 
     startTargeting(){
+        if(!this.state.selectedCode){
+            return;
+        }
+
         if(!['neutral'].indexOf(this.state.codeState)){
-            console.log('invalid state for targeting');
             return;
         }
         if(this.state.location == null){
-            console.log('missing location');
             return;
         }
         this.setState({codeState: 'targeting'});
     }
 
     getLocation() {
-        console.log('get location');
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.setLocation);
         } else {
@@ -119,19 +120,16 @@ class App extends Component {
     }
 
     getOrientation(){
-        console.log('get orientation');
         window.addEventListener('deviceorientationabsolute', this.setOrientation, false);
     }
 
     setOrientation(orientation){
-        console.log('set orientation');
-        console.log(orientation);
         this.setState({orientation: orientation}, this.startTargeting);
     }
 
     setLocation(location) {
         console.log('set location');
-        console.log(location)
+
         this.setState({location: location}, this.startTargeting);
     }
 

@@ -147,6 +147,22 @@ body {
   justify-content: center;
   align-items: center; }
 
+.Step-enter {
+  opacity: 0.01;
+  background: red; }
+
+.Step-enter.Step-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in; }
+
+.Step-leave {
+  opacity: 1;
+  background: green; }
+
+.Step-leave.Step-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in; }
+
 .CodeForm_Input {
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
@@ -256,6 +272,9 @@ input::-webkit-inner-spin-button {
   position: absolute;
   width: 70vmin;
   height: 70vmin;
+  fill: var(--color-primary); }
+
+.Intro {
   fill: var(--color-primary); }
 
 /*Colors*/

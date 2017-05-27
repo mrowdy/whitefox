@@ -9,3 +9,23 @@
   justify-content: center;
   align-items: center;
 }
+
+.Step-enter {
+  opacity: 0.01;
+  background: red;
+}
+
+.Step-enter.Step-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.Step-leave {
+  opacity: 1;
+  background: green;
+}
+
+.Step-leave.Step-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

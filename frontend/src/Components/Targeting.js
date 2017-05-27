@@ -17,6 +17,12 @@ class Targeting extends Component {
     render() {
         const location = this.props.location;
         const orientation = this.props.orientation;
+
+        if(!orientation || !location){
+            console.log('orientation or location not provided');
+            return;
+        }
+
         const code = this.props.code;
         const locationVector = Vector.fromArray([location.coords.latitude, location.coords.longitude]);
         const targetVector = Vector.fromArray([code.lat, code.lon]);
