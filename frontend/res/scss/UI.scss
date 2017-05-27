@@ -7,6 +7,14 @@
   * {
     transition: stroke 1s;
   }
+
+  transition: opacity 300ms ease-in-out;
+
+  opacity: 1;
+}
+
+.UI--intro {
+  opacity: 0.1;
 }
 
 .UI--invalid {
@@ -24,8 +32,9 @@
     stroke: var(--color-highlight);
   }
 
-  .UIDotTop * , UIDotBottom *{
+  .UIDotTop *, UIDotBottom * {
     fill: var(--color-highlight);
+    stroke: var(--color-highlight);
   }
 }
 

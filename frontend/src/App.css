@@ -16,15 +16,20 @@ body {
   width: 100vmin;
   position: relative;
   overflow: hidden;
-  padding: 50px; }
+  padding: 10px; }
 
 .UI {
   position: relative;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  transition: opacity 300ms ease-in-out;
+  opacity: 1; }
 
 .UI * {
   transition: stroke 1s; }
+
+.UI--intro {
+  opacity: 0.1; }
 
 .UI--invalid * {
   stroke: var(--color-error); }
@@ -36,7 +41,8 @@ body {
   stroke: var(--color-highlight); }
 
 .UI--valid .UIDotTop *, .UI--valid UIDotBottom * {
-  fill: var(--color-highlight); }
+  fill: var(--color-highlight);
+  stroke: var(--color-highlight); }
 
 .UIFull {
   filter: blur(3px);

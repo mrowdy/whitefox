@@ -4,14 +4,7 @@ import Isvg from 'react-inlinesvg';
 class UI extends Component {
 
     render() {
-        let codeState = 'UI--neutral';
-        if(this.props.codeState === 'valid'){
-            codeState = 'UI--valid';
-        } else if(this.props.codeState === 'invalid'){
-            codeState = 'UI--invalid';
-        } else if(this.props.codeState === 'loading'){
-            codeState = 'UI--loading';
-        }
+        const codeState = 'UI--' + this.props.codeState;
 
         let classNames = `UI ${codeState}`;
         return (

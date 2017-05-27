@@ -4,6 +4,7 @@ import AccessGranted from './Components/AccessGranted.js';
 import AccessDenied from './Components/AccessDenied.js';
 import Loading from './Components/Loading.js';
 import Targeting from './Components/Targeting.js';
+import Intro from './Components/Intro.js';
 
 import UI from './Components/UI.js';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
@@ -18,7 +19,7 @@ class App extends Component {
         super(props);
         this.state = {
             selectedCode: '',
-            codeState: 'neutral',
+            codeState: 'intro',
             location: null,
             orientation: {
                 alpha: 0,
@@ -37,12 +38,14 @@ class App extends Component {
         this.setLocation = this.setLocation.bind(this);
         this.getOrientation = this.getOrientation.bind(this);
         this.setOrientation = this.setOrientation.bind(this);
+        this.startIntro = this.startIntro.bind(this);
+        this.startApp = this.startApp.bind(this);
     }
 
     componentDidMount(){
         this.getLocation();
+        this.startIntro();
     }
-
 
     handleCodeChange(code) {
         let selectedCode = null;
@@ -61,6 +64,18 @@ class App extends Component {
             this.stateTimout = setTimeout(this.handleReset, 2000);
             this.setState({selectedCode: null});
         }
+    }
+
+    startIntro(){
+        this.stateTimout = setTimeout(this.startApp, 3000);
+    }
+
+    startApp(){
+        this.setState({codeState: 'neutral'});
+
+        // if(this.stateTimout != null){
+        //     clearTimeout(this.stateTimout);
+        // }
     }
 
     handleReset() {
@@ -83,7 +98,7 @@ class App extends Component {
     }
 
     startTargeting(){
-        if(!(this.state.codeState === 'loading' || this.state.codeState === 'targeting')){
+        if(!['neutral'].indexOf(this.state.codeState)){
             console.log('invalid state for targeting');
             return;
         }
@@ -125,7 +140,9 @@ class App extends Component {
         let step = null;
 
         switch(this.state.codeState){
-
+            case 'intro':
+                step = <Intro/>
+                break;
             case 'valid':
                 step = <AccessGranted/>
                 break;
