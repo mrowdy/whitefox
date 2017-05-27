@@ -1,0 +1,34 @@
+.Compass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vmin;
+  height: 100vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Compass_Needle {
+  opacity: .3;
+  display: block;
+  left: 15vmin;
+  top: 15vmin;
+  position: absolute;
+  width: 70vmin;
+  height: 70vmin;
+  fill: var(--color-primary);
+}
+
+
+.Compass_Ring {
+  opacity: .5;
+  display: block;
+  left: 15vmin;
+  top: 15vmin;
+  position: absolute;
+  width: 70vmin;
+  height: 70vmin;
+  fill: var(--color-primary);
+}
